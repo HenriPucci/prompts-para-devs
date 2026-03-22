@@ -1004,11 +1004,14 @@
 
   reveals.forEach(el => observer.observe(el));
 
-  // Smooth scroll for CTA links
-  document.querySelectorAll('a[href="https://pay.kiwify.com.br/7jmvOLL"]').forEach(a => {
+  // Smooth scroll for internal CTA links only
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', (e) => {
-      e.preventDefault();
-      document.getElementById('comprar').scrollIntoView({ behavior: 'smooth' });
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
     });
   });
 </script>
